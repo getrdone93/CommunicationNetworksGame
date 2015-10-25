@@ -126,8 +126,6 @@ public class Server {
 			BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String connected = input.readLine();
 			while (connected.equals("1")) {
-				System.out.println("connected");
-
 				//send situation
 				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 				String currentState = INT_TO_SITUATION.get(STATE) + DELIMETER + printArray(SITUATION_TO_RESPONSES.get(INT_TO_SITUATION.get(STATE)));
@@ -204,6 +202,10 @@ public class Server {
 				//read option
 				input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				String option = input.readLine();
+				if ("quit".equals(option)) {
+					socket.close();
+					break;
+				}
 				switch (STATE) {
 				case 1:
 					if (option.equals("a")) {

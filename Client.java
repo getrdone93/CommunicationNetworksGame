@@ -34,7 +34,12 @@ public class Client {
 				//send option
 				Scanner in = new Scanner(System.in);
 				System.out.print("Enter option: ");
-				out.println(in.nextLine());
+				String option = in.nextLine();
+				out.println(option);
+				if ("quit".equals(option)) {
+					System.out.println("Thanks for playing!");
+					System.exit(1);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
